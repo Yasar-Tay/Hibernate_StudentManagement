@@ -8,6 +8,8 @@ public class StudentManagementRunner {
     private static void start(){
         Scanner input = new Scanner(System.in);
 
+        StudentService studentService = new StudentService();
+
         int select;
         do{
             System.out.println("======================================");
@@ -26,6 +28,8 @@ public class StudentManagementRunner {
             switch (select){
                 case 1:
                     //Register a Student
+                    Student student = studentService.getNewStudent();
+                    studentService.registerServiceStudent(student);
                     break;
                 case 2:
                     //List all Students
