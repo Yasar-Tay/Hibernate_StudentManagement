@@ -6,20 +6,49 @@ import org.hibernate.cfg.Configuration;
 public class StudentRepository {
 
     //Repository class
-    Configuration configuration = new Configuration()
-            .configure("hibernate.cfg.xml")
-            .addAnnotatedClass(Student.class);
-    SessionFactory sessionFactory = configuration.buildSessionFactory();
-    Session session = sessionFactory.openSession();
-    Transaction transaction = session.beginTransaction();
+    private static final SessionFactory sessionFactory;
+
+    static {
+        Configuration configuration = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Student.class);
+        sessionFactory = configuration.buildSessionFactory();
+    }
 
 
     public void registerStudent(Student newStudent) {
 
-        session.save(newStudent);
+        Session session = null;
+        Transaction transaction = null;
 
-        transaction.commit();
-        session.close();
-        sessionFactory.close();
+
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+
+            // Business logic
+            session.save(newStudent);
+
+            // Commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback(); // Rollback in case of failure
+            }
+            e.printStackTrace();
+        } finally {
+            // Ensure session is closed
+            if (session != null) {
+                session.close();
+            }
+        }
     }
+
+    public static void closeSessionFactory() {
+        if (sessionFactory != null) {
+            sessionFactory.close();
+        }
+    }
+
+
 }
