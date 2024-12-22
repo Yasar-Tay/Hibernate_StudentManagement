@@ -1,3 +1,8 @@
+package service;
+
+import domain.Student;
+import repository.StudentRepository;
+
 import java.util.Scanner;
 
 public class StudentService {
