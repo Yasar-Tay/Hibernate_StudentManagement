@@ -1,11 +1,13 @@
+package controller;
+
+import domain.Student;
+import service.StudentService;
+
 import java.util.Scanner;
 
-public class StudentManagementRunner {
-    public static void main(String[] args) {
-        start();
-    }
+public class StudentManagement {
 
-    private static void start(){
+    public static void start(){
         Scanner input = new Scanner(System.in);
 
         StudentService studentService = new StudentService();
@@ -13,12 +15,12 @@ public class StudentManagementRunner {
         int select;
         do{
             System.out.println("======================================");
-            System.out.println("Student Management System");
-            System.out.println("1 - Register a Student");
+            System.out.println("domain.Student Management System");
+            System.out.println("1 - Register a domain.Student");
             System.out.println("2 - List all Students");
-            System.out.println("3 - Update a Student");
-            System.out.println("4 - Delete a Student");
-            System.out.println("5 - Find a Student");
+            System.out.println("3 - Update a domain.Student");
+            System.out.println("4 - Delete a domain.Student");
+            System.out.println("5 - Find a domain.Student");
             System.out.println("6 - Generate Report for all Students");
             System.out.println("0 - Exit");
             System.out.println();
@@ -27,7 +29,7 @@ public class StudentManagementRunner {
             input.nextLine();
             switch (select){
                 case 1:
-                    //Register a Student
+                    //Register a domain.Student
                     Student student = studentService.getNewStudent();
                     studentService.registerServiceStudent(student);
                     break;
@@ -35,13 +37,13 @@ public class StudentManagementRunner {
                     //List all Students
                     break;
                 case 3:
-                    //Update a Student
+                    //Update a domain.Student
                     break;
                 case 4:
-                    //Delete a Student
+                    //Delete a domain.Student
                     break;
                 case 5:
-                    //Find a Student
+                    //Find a domain.Student
                     break;
                 case 6:
                     //Generate Report for all Students

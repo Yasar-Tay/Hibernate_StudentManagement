@@ -1,3 +1,5 @@
+package domain;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -54,7 +56,7 @@ public class Student {
 
     @java.lang.Override
     public java.lang.String  toString() {
-        return "Student{" +
+        return "domain.Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", grade=" + grade +
